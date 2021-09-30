@@ -1,7 +1,7 @@
 import React from "react";
 import "./Select.css";
 
-const Select = ({ children }) => {
+const Select = ({ children, handleOnChange }) => {
   return (
     <select
       name="countries"
@@ -9,7 +9,7 @@ const Select = ({ children }) => {
       autoFocus
       className="form-select"
       aria-label="Default select example"
-      onchange="myFunction()"
+      onChange={(e) => handleOnChange(e.target.value)}
     >
       <option value="" defaultValue disabled hidden>
         Choose a country:
