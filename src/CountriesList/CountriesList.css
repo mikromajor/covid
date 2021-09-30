@@ -1,0 +1,9 @@
+body,
+#root,
+header,
+nav,
+form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
