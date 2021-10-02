@@ -1,7 +1,7 @@
 import React from "react";
 import "./Button.css";
 
-const Button = ({ id, callback, label }) => {
+const Button = ({ id, callback, callbackValue, label }) => {
   // const {id, callback, label} = props;
 
   return (
@@ -11,7 +11,7 @@ const Button = ({ id, callback, label }) => {
       onClick={() => {
         if (!callback) return;
 
-        callback();
+        callback(callbackValue);
       }}
     >
       {label}

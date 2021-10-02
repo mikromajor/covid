@@ -1,27 +1,25 @@
 import React, { useState } from "react";
 import CountriesList from "./CountriesList/CountriesList";
 import CountryInfo from "./CountryInfo/CountryInfo";
+import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const App = () => {
   const [country, setCountry] = useState(null); // ua | ru | usa
-
+  // const [statisticsData, setStatisticsData] = useState(null);
   return (
     <>
       <CountriesList setCountry={setCountry} />
-      <CountryInfo country={country} />
+      <main className="content">
+        <CountryInfo country={country} />
+        {/* <Statistics setStatistics={statisticsData}/> */}
+      </main>
     </>
 
     // true && 123
     // false && 123
-
-    //  <main>
-    //  <div id="menuInput" class="hidden"></div>
-    //  <div id="content"></div>
-    //  <div id="statistic" class="hidden"></div>
-    // </main>
   );
 };
 
