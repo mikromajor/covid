@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from "react";
 import getFetch from "../../api/getFetch";
-// import Button from "../UI/Button/Button";
+import "./CountryInfo.css";
+import Button from "../UI/Button/Button";
 
-const CountryInfo = ({ country }) => {
-  // , setStatisticsData, setInputMenu
+const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const day = {
-  //   first: 1,
-  //   last: 2,
-  //   countryData: countryData,
-  //   date: false,
-  // };
-  // const week = {
-  //   first: 1,
-  //   last: 7,
-  //   countryData: countryData,
-  //   date: false,
-  // };
-  // const month = {
-  //   first: 1,
-  //   last: 30,
-  //   countryData: countryData,
-  //   date: false,
-  // };
+  const day = {
+    first: 1,
+    last: 2,
+    countryData: countryData,
+    date: false,
+  };
+  const week = {
+    first: 1,
+    last: 7,
+    countryData: countryData,
+    date: false,
+  };
+  const month = {
+    first: 1,
+    last: 30,
+    countryData: countryData,
+    date: false,
+  };
   useEffect(() => {
-    if (!country) return;
+    if (country === null) return;
 
     const fetchData = async () => {
       const data = await getFetch(`country/${country}`);
@@ -37,14 +37,14 @@ const CountryInfo = ({ country }) => {
     fetchData();
   }, [country]);
 
-  if (!country) return null;
+  if (country === null) return null;
 
   if (loading) return <p>Country info loading...</p>;
 
   if (!countryData) return <p>No info</p>;
 
   return (
-    <div>
+    <div id="CountryInfo">
       <p>{countryData[countryData.length - 1].Country}</p>
       <p>Date : {countryData[countryData.length - 1].Date}</p>
       <p>Amount of Active : {countryData[countryData.length - 1].Active}</p>
@@ -60,8 +60,8 @@ const CountryInfo = ({ country }) => {
         callback={setStatisticsData}
         callbackValue={month}
         label={"month"}
-      />
-      <Button
+      /> */}
+      {/* <Button
         callback={setInputMenu}
         callbackValue={countryData}
         label={"Input your period"}

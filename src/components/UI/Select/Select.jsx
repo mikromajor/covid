@@ -7,11 +7,12 @@ const Select = ({ children, handleOnChange }) => {
       name="countries"
       id="countriesList"
       autoFocus
+      defaultValue="default"
       className="form-select"
       aria-label="Default select example"
       onChange={(e) => handleOnChange(e.target.value)}
     >
-      <option value="" defaultValue disabled hidden>
+      <option value="default" disabled hidden>
         Choose a country:
       </option>
       {children}
