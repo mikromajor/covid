@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import getFetch from "../../api/getFetch";
 import Button from "../UI/Button/Button";
 
-const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
+const CountryInfo = ({ country }) => {
+  // , setStatisticsData, setInputMenu
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
   const day = {
@@ -49,7 +50,7 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
       <p>Amount of Active - {countryData[countryData.length - 1].Active}</p>
       <p>Amount Confirmed - {countryData[countryData.length - 1].Confirmed}</p>
       <p>Amount of deaths - {countryData[countryData.length - 1].Deaths}</p>
-      <Button callback={setStatisticsData} callbackValue={day} label={"day"} />
+      {/* <Button callback={setStatisticsData} callbackValue={day} label={"day"} />
       <Button
         callback={setStatisticsData}
         callbackValue={week}
@@ -64,7 +65,7 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
         callback={setInputMenu}
         callbackValue={countryData}
         label={"Input your period"}
-      />
+      /> */}
     </div>
   );
 };
