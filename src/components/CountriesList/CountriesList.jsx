@@ -10,11 +10,9 @@ const CountriesList = ({ setCountry }) => {
     const fetchData = async () => {
       const countries = await getFetch("countries");
       setItems(countries);
-      console.log("countries in CountriesList 13->", countries);
     };
     fetchData();
   }, []);
-  alert("CountriesList");
   if (!items.length) return <p>Loading...</p>;
 
   return (
