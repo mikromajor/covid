@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import getFetch from "../../api/getFetch";
 import CountriesSelection from "./components/CountriesSelection";
-import "./CountriesList.css";
 
 const CountriesList = ({ setCountry }) => {
   const [items, setItems] = useState([]);

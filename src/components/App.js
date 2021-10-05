@@ -9,7 +9,8 @@ import "./App.css";
 
 const App = () => {
   const [country, setCountry] = useState(null); // ua | ru | usa
-  //const [statisticsData, setStatisticsData] = useState(null);
+  const [statisticsData, setStatisticsData] = useState(null);
+
   // const [inputMenuData, setInputMenuData] = useState(null);
   //  {/* <InputMenu menu={inputMenuData} /> */}
   // {/* <Statistics setStatistics={statisticsData} /> */}
@@ -17,7 +18,8 @@ const App = () => {
     <>
       <CountriesList setCountry={setCountry} />
       <main className="content">
-        <CountryInfo country={country} />
+        <CountryInfo country={country} setStatisticsData={setStatisticsData} />
+        <Statistics statisticsData={statisticsData} />
       </main>
     </>
   );

@@ -1,6 +1,11 @@
 body,
-#root .content {
+#root,
+header,
+nav,
+form,
+.content {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
 }
 body {

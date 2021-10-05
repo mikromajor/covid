@@ -26,7 +26,9 @@ const CountryInfo = ({ country, setStatisticsData }) => {
     date: false,
   };
   useEffect(() => {
-    if (country === null) return;
+    setStatisticsData(null);
+
+    if (!country) return;
 
     const fetchData = async () => {
       const data = await getFetch(`country/${country}`);
@@ -36,28 +38,34 @@ const CountryInfo = ({ country, setStatisticsData }) => {
 
     setLoading(true);
     fetchData();
-  }, [country]);
+  }, [country, setStatisticsData]);
 
-  if (country === null) return null;
+  if (!country) {
+    console.log("problem with country in CountryInfo 42", country);
+    return null; // country===null
+  }
 
   if (loading) return <p>Country info loading...</p>;
 
-  if (!countryData) return <p className="countryInfo">No info</p>;
-
-  if (!countryData.length)
+  if (!countryData) {
+    setStatisticsData(null);
+    return <p className="countryInfo">Errors no info from server</p>;
+  }
+  if (!countryData.length) {
+    setStatisticsData(null);
     return (
       <p className="countryInfo">No information about covid in this country</p>
     );
-
+  }
   return (
     <div className="countryInfo">
-      <p>{countryData[countryData.length - 1].Country}</p>
+      <h2>{countryData[countryData.length - 1].Country}</h2>
       <p>Date : {countryData[countryData.length - 1].Date}</p>
       <p>Amount of Active : {countryData[countryData.length - 1].Active}</p>
       <p>Amount Confirmed : {countryData[countryData.length - 1].Confirmed}</p>
       <p>Amount of deaths : {countryData[countryData.length - 1].Deaths}</p>
 
-      <Button label={"day"} />
+      <Button callback={setStatisticsData} callbackValue={day} label={"day"} />
 
       <Button
         callback={setStatisticsData}
