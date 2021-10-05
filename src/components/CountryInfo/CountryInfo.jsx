@@ -3,9 +3,10 @@ import getFetch from "../../api/getFetch";
 import "./CountryInfo.css";
 import Button from "../UI/Button/Button";
 
-const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
+const CountryInfo = ({ country, setStatisticsData }) => {
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
+
   const day = {
     first: 1,
     last: 2,
@@ -41,16 +42,23 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
 
   if (loading) return <p>Country info loading...</p>;
 
-  if (!countryData) return <p>No info</p>;
+  if (!countryData) return <p className="countryInfo">No info</p>;
+
+  if (!countryData.length)
+    return (
+      <p className="countryInfo">No information about covid in this country</p>
+    );
 
   return (
-    <div id="CountryInfo">
+    <div className="countryInfo">
       <p>{countryData[countryData.length - 1].Country}</p>
       <p>Date : {countryData[countryData.length - 1].Date}</p>
       <p>Amount of Active : {countryData[countryData.length - 1].Active}</p>
       <p>Amount Confirmed : {countryData[countryData.length - 1].Confirmed}</p>
       <p>Amount of deaths : {countryData[countryData.length - 1].Deaths}</p>
-      {/* <Button callback={setStatisticsData} callbackValue={day} label={"day"} />
+
+      <Button label={"day"} />
+
       <Button
         callback={setStatisticsData}
         callbackValue={week}
@@ -60,7 +68,7 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenu }) => {
         callback={setStatisticsData}
         callbackValue={month}
         label={"month"}
-      /> */}
+      />
       {/* <Button
         callback={setInputMenu}
         callbackValue={countryData}

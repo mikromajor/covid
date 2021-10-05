@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CountriesList from "./CountriesList/CountriesList";
 import CountryInfo from "./CountryInfo/CountryInfo";
-// import InputMenu from '../InputMenu/InputMenu'
 import Statistics from "./Statistics/Statistics";
 import "./App.css";
 

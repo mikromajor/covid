@@ -1,0 +1,13 @@
+body,
+#root .content {
+  display: flex;
+  width: 100%;
+}
+body {
+  background-image: linear-gradient(90deg, white, rgb(15, 207, 255));
+}
+.content {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}

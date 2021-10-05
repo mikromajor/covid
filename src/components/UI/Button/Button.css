@@ -1,6 +1,17 @@
 .button {
-  background-color: rgb(35, 104, 255);
-  border-radius: 3px;
-  border-width: 0;
-  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 200px;
+  margin: 5px;
+  padding: 5px 50px;
+  border-radius: 70%;
+  background-color: rgb(145, 161, 214);
+}
+.button:hover {
+  cursor: pointer;
+}
+.button:focus {
+  background-color: rgb(255, 253, 162);
 }
