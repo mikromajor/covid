@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import getFetch from "../../api/getFetch";
 import "./CountryInfo.css";
 import Button from "../UI/Button/Button";
+import { calcStatistics } from "../../utils/calcStatistics";
 
 const CountryInfo = ({ country, setStatisticsData, setInputMenuData }) => {
   const [countryData, setCountryData] = useState(null);
@@ -64,8 +65,8 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenuData }) => {
       <Button callback={setStatisticsData} callbackValue={day} label={"day"} />
 
       <Button
-        callback={setStatisticsData}
-        callbackValue={week}
+        callback={calcStatistics}
+        callbackValue={(setStatisticsData, week)}
         label={"week"}
       />
       <Button
