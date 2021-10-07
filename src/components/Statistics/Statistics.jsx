@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./Statistics.css";
 
 const Statistics = ({ statisticsData }) => {
-  console.log("statisticsData", statisticsData);
-
   const [statisticsOut, setStatisticsOut] = useState(null);
   let periodDays = null;
   let firstObj;
   let lastObj;
   let warning = null;
 
+  console.log("statisticsData", statisticsData);
+
   useEffect(() => {
     if (!statisticsData) return setStatisticsOut(null);
-
     // date from fetch coming looks  like that
     // arrObj[{objStatisticInfAboutCovidForFirstDay},{...SecondDay},{....}]
     // logics:  arr[{1}{2}{y}{4}{x}{6}{now}]
@@ -21,7 +20,17 @@ const Statistics = ({ statisticsData }) => {
     // amountDays = nowDate-xDate
     // x = arr[ (arr.length-1) - amountDays ]
 
+    // input user period
     if (statisticsData.date) {
+      //testing inputs periods value]
+      if (!statisticsData.first || !statisticsData.last) {
+        console.log("You have forgotten enter period");
+
+        setStatisticsOut(
+          <h2 className="warning">You have forgotten enter period</h2>
+        );
+        return;
+      }
       const dateToday = new Date();
       const dateFirst = new Date(statisticsData.first);
       const dateLast = new Date(statisticsData.last);
@@ -30,6 +39,7 @@ const Statistics = ({ statisticsData }) => {
       const endPeriod = Math.trunc((dateToday - dateLast) / 86400000); //Determine the number of days from today to the start of a given period
       periodDays = Math.abs(startPeriod - endPeriod);
 
+      // data validation
       if (
         startPeriod > statisticsData.countryData.length ||
         endPeriod > statisticsData.countryData.length ||
@@ -42,6 +52,10 @@ const Statistics = ({ statisticsData }) => {
       } else if (!periodDays) {
         warning = <h2 className="warning">Entered period has 0 day</h2>;
       }
+      if (warning) {
+        setStatisticsOut(warning);
+        return;
+      }
 
       firstObj =
         statisticsData.countryData[
@@ -51,7 +65,9 @@ const Statistics = ({ statisticsData }) => {
         statisticsData.countryData[
           statisticsData.countryData.length - 1 - endPeriod
         ];
-    } else {
+    }
+    //input standard period
+    else {
       periodDays = statisticsData.last - statisticsData.first;
       firstObj =
         statisticsData.countryData[
@@ -66,10 +82,6 @@ const Statistics = ({ statisticsData }) => {
     const statisticsResult = (key) => {
       return Math.abs(firstObj[key] - lastObj[key]);
     };
-    if (warning) {
-      setStatisticsOut(warning);
-      return;
-    }
 
     setStatisticsOut(
       <div className="statisticsInfo">
@@ -88,7 +100,6 @@ const Statistics = ({ statisticsData }) => {
     );
   }, [statisticsData]);
 
-  // if (statisticsOut == null) return <p>Calculation results...</p>;
   return statisticsOut;
 };
 export default Statistics;

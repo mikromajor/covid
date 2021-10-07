@@ -3,7 +3,12 @@ import getFetch from "../../api/getFetch";
 import "./CountryInfo.css";
 import Button from "../UI/Button/Button";
 
-const CountryInfo = ({ country, setStatisticsData }) => {
+const CountryInfo = ({
+  country,
+  setStatisticsData,
+  setInputMenuData,
+  setPrintInputMenu,
+}) => {
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +32,7 @@ const CountryInfo = ({ country, setStatisticsData }) => {
   };
   useEffect(() => {
     setStatisticsData(null);
+    setPrintInputMenu(null);
 
     if (!country) return;
 
@@ -38,7 +44,7 @@ const CountryInfo = ({ country, setStatisticsData }) => {
 
     setLoading(true);
     fetchData();
-  }, [country, setStatisticsData]);
+  }, [country, setStatisticsData, setPrintInputMenu]);
 
   if (!country) {
     console.log("problem with country in CountryInfo 42", country);
@@ -77,11 +83,11 @@ const CountryInfo = ({ country, setStatisticsData }) => {
         callbackValue={month}
         label={"month"}
       />
-      {/* <Button
-        callback={setInputMenu}
+      <Button
+        callback={setInputMenuData}
         callbackValue={countryData}
         label={"Input your period"}
-      /> */}
+      />
     </div>
   );
 };
