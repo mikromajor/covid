@@ -3,12 +3,7 @@ import getFetch from "../../api/getFetch";
 import "./CountryInfo.css";
 import Button from "../UI/Button/Button";
 
-const CountryInfo = ({
-  country,
-  setStatisticsData,
-  setInputMenuData,
-  setPrintInputMenu,
-}) => {
+const CountryInfo = ({ country, setStatisticsData, setInputMenuData }) => {
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,7 +27,6 @@ const CountryInfo = ({
   };
   useEffect(() => {
     setStatisticsData(null);
-    setPrintInputMenu(null);
 
     if (!country) return;
 
@@ -44,11 +38,10 @@ const CountryInfo = ({
 
     setLoading(true);
     fetchData();
-  }, [country, setStatisticsData, setPrintInputMenu]);
+  }, [country]);
 
   if (!country) {
-    console.log("problem with country in CountryInfo 42", country);
-    return null; // country===null
+    return null;
   }
 
   if (loading) return <p>Country info loading...</p>;

@@ -1,54 +1,43 @@
-import { logDOM } from "@testing-library/dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button/Button";
+import Input from "../UI/Input/Input";
 import "./InputMenu.css";
 
-const InputMenu = ({
-  inputMenuData,
-  setStatisticsData,
-  printInputMenu,
-  setPrintInputMenu,
-}) => {
+const InputMenu = ({ inputMenuData, setStatisticsData }) => {
+  const [dataFirst, setDataFirst] = useState(1);
+  const [dataLast, setDataLast] = useState(1);
+
+  if (!inputMenuData) return null;
   const countriesDateWsPeriod = {
     date: true,
+    countryData: inputMenuData,
+    first: dataFirst,
+    last: dataLast,
   };
 
-  useEffect(() => {
-    if (!inputMenuData) {
-      setPrintInputMenu(null);
-      return;
-    }
-    countriesDateWsPeriod.countryData = inputMenuData;
+  return (
+    <div className="inputMenu">
+      <label name="startPeriod">Enter periods start</label>
+      <Input
+        id={"startPeriod"}
+        value={dataFirst}
+        type={"date"}
+        callback={setDataFirst}
+      />
 
-    setPrintInputMenu(
-      <div className="inputMenu">
-        <label name="startPeriod">Enter periods start</label>
-        <input
-          id="startPeriod"
-          type="date"
-          onChange={(e) => {
-            countriesDateWsPeriod.first = e.target.value;
-            console.log("countriesDateWsPeriod", countriesDateWsPeriod);
-          }}
-        ></input>
-        <label name="endPeriod">Enter periods end</label>
-        <input
-          id="endPeriod"
-          type="date"
-          onChange={(e) => {
-            countriesDateWsPeriod.last = e.target.value;
-            console.log("countriesDateWsPeriod", countriesDateWsPeriod);
-          }}
-        ></input>
-        <Button
-          label={"Calculate Statistics"}
-          callback={setStatisticsData}
-          callbackValue={countriesDateWsPeriod}
-        />
-      </div>
-    );
-  }, [inputMenuData]);
-
-  return printInputMenu;
+      <label name="endPeriod">Enter periods end</label>
+      <Input
+        id={"endPeriod"}
+        value={dataLast}
+        type={"date"}
+        callback={setDataLast}
+      />
+      <Button
+        label={"Calculate Statistics"}
+        callback={setStatisticsData}
+        callbackValue={countriesDateWsPeriod}
+      />
+    </div>
+  );
 };
 export default InputMenu;
