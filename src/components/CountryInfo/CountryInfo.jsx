@@ -11,19 +11,16 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenuData }) => {
     first: 1,
     last: 2,
     countryData: countryData,
-    date: false,
   };
   const week = {
     first: 1,
     last: 7,
     countryData: countryData,
-    date: false,
   };
   const month = {
     first: 1,
     last: 30,
     countryData: countryData,
-    date: false,
   };
   useEffect(() => {
     setStatisticsData(null);
@@ -38,7 +35,7 @@ const CountryInfo = ({ country, setStatisticsData, setInputMenuData }) => {
 
     setLoading(true);
     fetchData();
-  }, [country]);
+  }, [country, setStatisticsData]);
 
   if (!country) {
     return null;

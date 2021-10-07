@@ -2,7 +2,9 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  max-width: 350px;
+  max-width: 300px;
+  min-width: 260px;
+  min-height: 450px;
   margin-left: 50px;
   margin-top: 20px;
   padding: 20px 10px 10px;
@@ -15,15 +17,4 @@
 .countryInfo h2 ~ p {
   margin: 0;
   padding-bottom: 10px;
-}
-
-.warning {
-  display: flex;
-  max-width: 350px;
-  margin-left: 50px;
-  margin-top: 20px;
-  padding: 20px 10px 10px;
-  border-radius: 10px;
-  border: 1px solid grey;
-  background-image: linear-gradient(0deg, white, rgb(244, 247, 34));
 }

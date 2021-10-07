@@ -3,9 +3,9 @@ import Button from "../UI/Button/Button";
 import Input from "../UI/Input/Input";
 import "./InputMenu.css";
 
-const InputMenu = ({ inputMenuData, setStatisticsData }) => {
-  const [dataFirst, setDataFirst] = useState(1);
-  const [dataLast, setDataLast] = useState(1);
+const InputMenu = ({ inputMenuData, setStatisticsData, setInputMenuData }) => {
+  const [dataFirst, setDataFirst] = useState(undefined);
+  const [dataLast, setDataLast] = useState(undefined);
 
   if (!inputMenuData) return null;
   const countriesDateWsPeriod = {
@@ -17,6 +17,9 @@ const InputMenu = ({ inputMenuData, setStatisticsData }) => {
 
   return (
     <div className="inputMenu">
+      <h4>
+        You may choose period from yesterday to {inputMenuData.length} days ago{" "}
+      </h4>
       <label name="startPeriod">Enter periods start</label>
       <Input
         id={"startPeriod"}
@@ -36,6 +39,11 @@ const InputMenu = ({ inputMenuData, setStatisticsData }) => {
         label={"Calculate Statistics"}
         callback={setStatisticsData}
         callbackValue={countriesDateWsPeriod}
+      />
+      <Button
+        label={"Hidden input menu"}
+        callback={setInputMenuData}
+        callbackValue={null}
       />
     </div>
   );

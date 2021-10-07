@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Error from "../UI/Error/Error";
+import Button from "../UI/Button/Button";
 import "./Statistics.css";
 
-const Statistics = ({ statisticsData }) => {
+const Statistics = ({ statisticsData, setStatisticsData }) => {
   let periodDays = null;
   let firstObj;
   let lastObj;
-  let warning = null;
-
-  console.log("statisticsData", statisticsData);
 
   if (!statisticsData) return null;
   // date from fetch coming looks  like that
@@ -18,13 +17,17 @@ const Statistics = ({ statisticsData }) => {
   // amountDays = nowDate-xDate
   // x = arr[ (arr.length-1) - amountDays ]
 
-  // input user period
+  // input users period:
   if (statisticsData.date) {
     //testing inputs periods value]
     if (!statisticsData.first || !statisticsData.last) {
-      console.log("You have forgotten enter period");
-
-      return <h2 className="warning">You have forgotten enter period</h2>;
+      return (
+        <Error
+          className={"warning"}
+          id={"noFirstLast"}
+          label={"You have forgotten enter period"}
+        />
+      );
     }
     const dateToday = new Date();
     const dateFirst = new Date(statisticsData.first);
@@ -41,14 +44,21 @@ const Statistics = ({ statisticsData }) => {
       startPeriod < 1 ||
       endPeriod < 1
     ) {
-      warning = (
-        <h2 className="warning">No information available for this period</h2>
+      return (
+        <Error
+          className={"warning"}
+          id={"notSuitableLength"}
+          label={"No information available for this period"}
+        />
       );
     } else if (!periodDays) {
-      warning = <h2 className="warning">Entered period has 0 day</h2>;
-    }
-    if (warning) {
-      return warning;
+      return (
+        <Error
+          className={"warning"}
+          id={"noPeriodDays"}
+          label={"Entered period has 0 day"}
+        />
+      );
     }
 
     firstObj =
@@ -84,12 +94,12 @@ const Statistics = ({ statisticsData }) => {
       <p>Amount of Active: {statisticsResult("Active")} </p>
       <p>Amount Confirmed: {statisticsResult("Confirmed")}</p>
       <p>Amount of deaths: {statisticsResult("Deaths")}</p>
-      {/* <Button
-            id={"day"}
-            callback={setStatisticsData}
-            callbackValue={day}
-            label={"day"}
-            /> */}
+      <Button
+        id={"hidSt"}
+        callback={setStatisticsData}
+        callbackValue={null}
+        label={"Hidden Statistics"}
+      />
     </div>
   );
 };

@@ -3,13 +3,11 @@ import CountriesList from "./CountriesList/CountriesList";
 import CountryInfo from "./CountryInfo/CountryInfo";
 import Statistics from "./Statistics/Statistics";
 import InputMenu from "./InputMenu/InputMenu";
-import "./App.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const App = () => {
-  const [country, setCountry] = useState(null); // ua | ru | usa
+  const [country, setCountry] = useState(null);
   const [statisticsData, setStatisticsData] = useState(null);
   const [inputMenuData, setInputMenuData] = useState(null);
   return (
@@ -19,13 +17,17 @@ const App = () => {
         <InputMenu
           inputMenuData={inputMenuData}
           setStatisticsData={setStatisticsData}
+          setInputMenuData={setInputMenuData}
         />
         <CountryInfo
           country={country}
           setStatisticsData={setStatisticsData}
           setInputMenuData={setInputMenuData}
         />
-        <Statistics statisticsData={statisticsData} />
+        <Statistics
+          statisticsData={statisticsData}
+          setStatisticsData={setStatisticsData}
+        />
       </main>
     </>
   );

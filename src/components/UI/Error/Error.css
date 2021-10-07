@@ -1,0 +1,13 @@
+.warning {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 350px;
+  margin-left: 50px;
+  margin-top: 20px;
+  padding: 20px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  /* box-shadow: 30px 25px 5px rgb(255, 255, 255); */
+  background-image: linear-gradient(0deg, white, rgb(183, 255, 15));
+}

@@ -1,13 +1,15 @@
 .button {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column;
-  width: 200px;
-  margin: 5px;
-  padding: 5px 50px;
+  width: 250px;
+  height: 40px;
+  margin: 4px;
+  padding: 4px 26px;
   border-radius: 70%;
   background-color: rgb(145, 161, 214);
+  text-justify: auto;
+  text-align: center;
 }
 .button:hover {
   cursor: pointer;
