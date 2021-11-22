@@ -1,17 +1,14 @@
 import React from "react";
 import "./Button.css";
 
-const Button = ({ id, callback, callbackValue, label }) => {
-  // const {id, callback, label} = props;
+const Button = ({callback, label }) => {
 
   return (
     <button
-      id={id}
       className="button"
       onClick={() => {
         if (!callback) return;
-
-        callback(callbackValue);
+        callback();
       }}
     >
       {label}

@@ -1,50 +1,57 @@
 import React, { useState } from "react";
-import Button from "../UI/Button/Button";
-import Input from "../UI/Input/Input";
+import { Button, Error, Input } from "../UI";
 import "./InputMenu.css";
 
-const InputMenu = ({ inputMenuData, setStatisticsData, setInputMenuData }) => {
-  const [dataFirst, setDataFirst] = useState(undefined);
-  const [dataLast, setDataLast] = useState(undefined);
+const InputMenu = ({ setPeriod, setShowInputMenu, setShowStatistacs }) => {
+  const [start_period, setStart_period] = useState('');
+  const [end_period, setEnd_period] = useState('');
+  const [warning, setWarning] = useState(false);
 
-  if (!inputMenuData) return null;
-  const countriesDateWsPeriod = {
-    date: true,
-    countryData: inputMenuData,
-    first: dataFirst,
-    last: dataLast,
-  };
+  const today = new Date();
+  let dateFirst, dateLast;
+  const calculetePeriod = () => {
+    if (start_period.length && end_period.length) {
+      setWarning(false)
+      dateFirst = new Date(start_period);
+      dateLast = new Date(end_period);
+
+      setPeriod({
+        start_period: (Math.trunc((today - dateFirst) / 86400000)),
+
+        end_period: (Math.trunc((today - dateLast) / 86400000)),
+      })
+
+    } else { setWarning(true) }
+
+
+    setShowStatistacs(true);
+  }
 
   return (
     <div className="inputMenu">
-      <h4>
-        You may choose period from yesterday to {inputMenuData.length} days ago{" "}
-      </h4>
-      <label name="startPeriod">Enter periods start</label>
+
+      <label name="start_period">Enter periods start</label>
       <Input
-        id={"startPeriod"}
-        value={dataFirst}
-        type={"date"}
-        callback={setDataFirst}
+        label={'start_period'}
+        value={start_period}
+        callback={setStart_period}
       />
 
-      <label name="endPeriod">Enter periods end</label>
+      <label name="end_period">Enter periods end</label>
       <Input
-        id={"endPeriod"}
-        value={dataLast}
-        type={"date"}
-        callback={setDataLast}
-      />
-      <Button
-        label={"Calculate Statistics"}
-        callback={setStatisticsData}
-        callbackValue={countriesDateWsPeriod}
+        label={'end_period'}
+        value={end_period}
+        callback={setEnd_period}
       />
       <Button
         label={"Hidden input menu"}
-        callback={setInputMenuData}
-        callbackValue={null}
+        callback={() => setShowInputMenu(false)}
       />
+      <Button
+        label={"Calculete"}
+        callback={() => calculetePeriod()}
+      />
+      {warning && <Error label={'Pleas, choose period '} />}
     </div>
   );
 };

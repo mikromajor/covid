@@ -7,33 +7,52 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const App = () => {
-  const [country, setCountry] = useState(null);
-  const [statisticsData, setStatisticsData] = useState(null);
-  const [inputMenuData, setInputMenuData] = useState(null);
+  const [country, setCountry] = useState('');
+  const [countryData, setCountryData] = useState([]);
+  const [period, setPeriod] = useState({
+    start_period: 0,
+    end_period: 0
+  });
+
+  const [showInputMenu, setShowInputMenu] = useState(false);
+  const [showStatistics, setShowStatistics] = useState(false);
+  console.log('APP country ->', country);
+  console.log('APP countryData -> ', countryData);
+  console.log('APP period -> ', period);
+  console.log('APP showInputMenu', showInputMenu);
+  console.log('APP showStatistics', showStatistics);
+
+
   return (
     <>
       <CountriesList setCountry={setCountry} />
       <main className="content">
-        <InputMenu
-          inputMenuData={inputMenuData}
-          setStatisticsData={setStatisticsData}
-          setInputMenuData={setInputMenuData}
-        />
-        <CountryInfo
+        {showInputMenu && <InputMenu
+          setPeriod={setPeriod}
+          setShowInputMenu={setShowInputMenu}
+          setShowStatistacs={setShowStatistics}
+        />}
+        {!!country.length &&
+          <CountryInfo
           country={country}
-          setStatisticsData={setStatisticsData}
-          setInputMenuData={setInputMenuData}
-        />
-        <Statistics
-          statisticsData={statisticsData}
-          setStatisticsData={setStatisticsData}
-        />
+            countryData={countryData}
+            setCountryData={setCountryData}
+            setPeriod={setPeriod}
+            setShowInputMenu={setShowInputMenu}
+            setShowStatistics={setShowStatistics}
+
+          />}
+        {showStatistics && <Statistics
+          period={period}
+          countryData={countryData}
+          setShowStatistics={setShowStatistics}
+        />}
       </main>
+
     </>
   );
 };
 
 export default App;
 
-// true && 123
-// false && 123
+
