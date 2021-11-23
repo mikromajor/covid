@@ -1,9 +1,9 @@
 import React from "react";
 import "./Error.css";
 
-const Error = ({ id, className, label }) => {
+const Error = ({ label }) => {
   return (
-    <h2 id={id} className={className}>
+    <h2 className={'warning'}>
       {label}
     </h2>
   );

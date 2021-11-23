@@ -1,10 +1,10 @@
 import React from "react";
 
-const Input = ({ id, type, value, callback }) => {
+const Input = ({ label, value, callback }) => {
   return (
     <input
-      id={id}
-      type={type}
+      id={label}
+      type='date'
       value={value}
       onChange={(e) => {
         if (!callback) return;
