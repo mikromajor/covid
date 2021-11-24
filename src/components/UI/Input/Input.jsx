@@ -4,11 +4,11 @@ const Input = ({ label, value, callback }) => {
   return (
     <input
       id={label}
-      type='date'
       value={value}
+      type='date'
       onChange={(e) => {
         if (!callback) return;
-        callback(e.target.value);
+        callback(e.currentTarget.value);
       }}
     />
   );

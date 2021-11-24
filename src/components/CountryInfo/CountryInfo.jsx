@@ -13,7 +13,6 @@ const CountryInfo = ({ country, countryData, setCountryData,
     const fetchData = async () => {
 
       const request = await getFetch(`country/${country}`);
-      console.log('request in useEff ->', request);
       setCountryData(request);
       setLoading(false);
     };
