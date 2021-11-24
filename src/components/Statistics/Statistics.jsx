@@ -16,9 +16,9 @@ const Statistics = ({ period, countryData, setShowStatistics }) => {
     const active = calculate("Active");
     const confirmed = calculate('Confirmed')
     const deaths = calculate('Deaths')
-    console.log('periodDays', periodDays);
-    return (
-      <div className="statisticsInfo">
+
+		return (
+			<div className="statisticsInfo">
         <Card name={name} period={periodDays} active={active} confirmed={confirmed} deaths={deaths} />
         <Button
           callback={() => setShowStatistics(false)}

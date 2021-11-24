@@ -4,7 +4,7 @@ import hendlerDate from '../../utils/hendlerDate';
 import {INIT_WARNING_START, INIT_WARNING_END} from '../../utils/constants'
 import "./InputMenu.css";
 
-const InputMenu = ({ period, setPeriod, setShowInputMenu, setShowStatistics }) => {
+const InputMenu = ({ maxPeriod, period, setPeriod, setShowInputMenu, setShowStatistics }) => {
   
 const [inpStart, setInpStart]=useState('');
 const [inpEnd, setInpEnd]=useState('');
@@ -13,13 +13,13 @@ const [inpEnd, setInpEnd]=useState('');
 	const [warningEnd, setWarningEnd] = useState(INIT_WARNING_END);
   
 useEffect(()=>{
-   console.log('useEffect fire');
   hendlerDate(inpStart, inpEnd, period, setPeriod, warningStart, setWarningStart, warningEnd, setWarningEnd, setShowStatistics)
 },[inpStart, inpEnd])
 
   return (
     <div className="inputMenu">
-
+			<h3>Period must bee limited max {maxPeriod} days ago to yesterday
+			</h3>
       <label name="start_period">Enter periods start</label>
       <Input
         label={'start_period'}

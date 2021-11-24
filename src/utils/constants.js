@@ -15,9 +15,9 @@ export const MONTH = {
 
 export const INIT_WARNING_START = {
 	start: false,
-	labelForStart: "An entered PERIOD START doesn't exist in this statistics period",
+	labelForStart: "Wrong PERIOD START.",
 }
 export const INIT_WARNING_END = {
 	end: false,
-	labelForEnd: "An entered PERIOD START doesn't exist in this statistics period",
+	labelForEnd: "Wrong PERIOD END."
 }

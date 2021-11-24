@@ -16,17 +16,13 @@ const App = () => {
 
   const [showInputMenu, setShowInputMenu] = useState(false);
   const [showStatistics, setShowStatistics] = useState(false)
-  // console.log('APP country ->', country);
-  // console.log('APP countryData -> ', countryData);
-  console.log('APP period -> ', period);
-  // console.log('APP showInputMenu', showInputMenu);
-  // console.log('APP showStatistics', showStatistics);
 
   return (
     <>
       <CountriesList setCountry={setCountry} />
       <main className="content">
         {showInputMenu && <InputMenu
+				maxPeriod={countryData.length}
         period={period}
           setPeriod={setPeriod}
           setShowInputMenu={setShowInputMenu}

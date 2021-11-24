@@ -1,47 +1,66 @@
-function hendlerDate(inpStart, inpEnd, period, setPeriod, warningStart, setWarningStart, warningEnd, setWarningEnd, setShowStatistics) {
+export default function hendlerDate(inpStart, inpEnd, period, setPeriod, warningStart, setWarningStart, warningEnd, setWarningEnd, setShowStatistics) {
   const today = new Date();
-	let start, end;
+	let endNumb, startNumb, isErrorEnd, isErrorStart;
 
-	const checkForError = (inputDay, label) => {
-		const days = new Date(inputDay)
-		const deff = (Math.trunc((today - days) / 86400000))
-		//check entered period length
-		if (deff < 1 || deff > period.length) {
-			setShowStatistics(false)
-			if (label === 'start') {
-				setWarningStart({
-					...warningStart, start: true
-				})
+	const transformInpDateToNumber = (inputDate) => {
+		const days = new Date(inputDate)
+		return (Math.ceil((today - days) / 86400000))
+	}
+
+	const checkForError = (numbDays) => {
+		return (numbDays < 1 || numbDays > period.length) ? true : false
+	}
+
+	const printOrHideError = (isError, label) => {
+		//error
+		if (isError) {
+			setShowStatistics(false);
+
+			switch (label) {
+				case 'start':
+					setWarningStart({
+						...warningStart, start: true
+					})
+					break;
+				case 'end':
+					setWarningEnd({
+						...warningEnd, end: true
+					})
+					break;
+				default: return;
 			}
-			if (label === 'end') {
-				setWarningEnd({
-					...warningEnd, end: true
-				})
+		}
+		// no error
+		if (!isError) {
+			switch (label) {
+				case 'start':
+					setWarningStart({
+						...warningStart, start: false
+					})
+					break;
+				case 'end':
+					setWarningEnd({
+						...warningEnd, end: false
+					})
+					break;
+				default: return;
 			}
-		} else {
-			if (label === 'start') {
-				setWarningStart({
-					...warningStart, start: false
-				})
-			}
-			if (label === 'end') {
-				setWarningEnd({
-					...warningEnd, end: false
-				})
-			}
-			return deff
 		}
 	}
 
-	if (inpEnd.length) {
-		end = checkForError(inpEnd, 'end')
-  }
 	if (inpStart.length) {
-		start = checkForError(inpStart, 'start')
+		startNumb = transformInpDateToNumber(inpStart)
+		isErrorStart = checkForError(startNumb)
+		printOrHideError(isErrorStart, 'start')
   }
-	if (start && end) {
-		setPeriod({ start_period: start, end_period: end, });
+	if (inpEnd.length) {
+		endNumb = transformInpDateToNumber(inpEnd)
+		isErrorEnd = checkForError(endNumb)
+		printOrHideError(isErrorEnd, 'end')
+	}
+
+	if (isErrorEnd === false && isErrorStart === false) {
+		setPeriod({ start_period: startNumb, end_period: endNumb, });
 		setShowStatistics(true);
 	}
 }
-export default hendlerDate;
