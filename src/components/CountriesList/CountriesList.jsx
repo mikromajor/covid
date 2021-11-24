@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getFetch from "../../api/getFetch";
 import CountriesSelection from "./components/CountriesSelection";
+import { Loader } from '../UI'
 
 const CountriesList = ({ setCountry }) => {
   const [items, setItems] = useState([]);
@@ -12,9 +13,10 @@ const CountriesList = ({ setCountry }) => {
     };
     fetchData();
   }, []);
-  if (!items.length) return <p>Loading...</p>;
 
   return (
+
+    !items.length ? <Loader /> :
     <header>
       <nav>
         <form id="form">

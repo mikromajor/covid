@@ -11,26 +11,22 @@ const App = () => {
   const [countryData, setCountryData] = useState([]);
   const [period, setPeriod] = useState({
     start_period: 0,
-    end_period: 0
+    end_period: 0,
   });
 
   const [showInputMenu, setShowInputMenu] = useState(false);
-  const [showStatistics, setShowStatistics] = useState(false);
-  console.log('APP country ->', country);
-  console.log('APP countryData -> ', countryData);
-  console.log('APP period -> ', period);
-  console.log('APP showInputMenu', showInputMenu);
-  console.log('APP showStatistics', showStatistics);
-
+  const [showStatistics, setShowStatistics] = useState(false)
 
   return (
     <>
       <CountriesList setCountry={setCountry} />
       <main className="content">
         {showInputMenu && <InputMenu
+				maxPeriod={countryData.length}
+        period={period}
           setPeriod={setPeriod}
           setShowInputMenu={setShowInputMenu}
-          setShowStatistacs={setShowStatistics}
+          setShowStatistics={setShowStatistics}
         />}
         {!!country.length &&
           <CountryInfo
