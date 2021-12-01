@@ -1,6 +1,6 @@
 # COVID - it's pet project.
 
-This App is funtional single page applications using hooks React js.
+This App is funсtional single page applications using hooks React js.
 
 Showing last statistical information about covid in different countries of the world.
 Users may choose different periods to see statistics information.
